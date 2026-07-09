@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero Waste Platform — Yearly Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text-default:#272b30; --text-subtle:#6a7178; --text-dark:#26292e;
+  --border:#ced4da; --border-light:#e9ecef;
+  --bg-page:#f1f3f5; --bg-card:#fff; --bg-kpi:#f8f9fa;
+  --table-alt:#f2f6fa; --table-hover:#d3e9fd; --table-selected:#e7f1fb;
+  --blue:#2f5fd0; --blue-dark:#274db2; --link:#2b6cd4;
+  --chip-red:#e8442e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,'Segoe UI',sans-serif;color:var(--text-default);background:#fff;font-size:14px}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+svg{display:block;flex-shrink:0}
+
+/* ---------- Top navigation ---------- */
+.topnav{height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border-light);position:sticky;top:0;background:#fff;z-index:60}
+.topnav .brand{display:flex;align-items:center;gap:12px}
+.brand-name{font-size:19px;font-weight:600;color:#1d2430}
+.beta{background:var(--chip-red);color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px;padding:3px 8px;border-radius:4px}
+.topnav .right{display:flex;align-items:center;gap:18px}
+.date-range{font-size:16px;font-weight:600;color:#1d2430}
+.icon-btn{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#3d4650}
+.icon-btn:hover{background:#f1f3f5}
+.avatar{width:38px;height:38px;border-radius:50%;background:#3f5bd9;color:#fff;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+
+/* ---------- Layout ---------- */
+.layout{display:flex;min-height:calc(100vh - 80px)}
+
+/* ---------- Sidebar ---------- */
+.sidebar{width:256px;flex-shrink:0;border-right:1px solid var(--border-light);padding:16px 0 32px;transition:width .2s;overflow:hidden}
+.sidebar.collapsed{width:0;border-right:none}
+.side-head{display:flex;align-items:center;justify-content:space-between;padding:0 16px 12px}
+.side-head .label{font-size:11px;font-weight:700;letter-spacing:.8px;color:var(--text-subtle)}
+.side-section{padding:10px 16px 2px;font-size:12px;color:var(--text-subtle);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.side-item{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:14px;color:#3d4650;cursor:pointer;border-left:3px solid transparent;white-space:nowrap}
+.side-item:hover{background:#f6f8fa}
+.side-item.active{color:var(--blue);font-weight:600;border-left-color:var(--blue)}
+.side-item.sub{padding-left:28px}
+.side-item svg{color:#4a525c}
+.side-item.active svg{color:var(--blue)}
+
+/* ---------- Body ---------- */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;background:#fff}
+.topbar{height:44px;display:flex;align-items:center;gap:10px;padding:0 24px;font-size:14px}
+.topbar .back{display:flex;align-items:center;gap:8px;color:#3d4650;font-weight:500}
+.topbar .chip{background:#eceff2;border-radius:4px;padding:4px 10px;font-size:13px;color:#3d4650}
+
+.tabs{display:flex;gap:8px;padding:0 16px;border-bottom:1px solid var(--border-light)}
+.tab{padding:12px 16px;font-size:14px;color:var(--text-subtle);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab:hover{color:var(--text-default)}
+.tab.active{color:var(--blue);font-weight:600;border-bottom-color:var(--blue)}
+
+.container{background:var(--bg-page);flex:1;padding:32px}
+.card{background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(20,30,40,.08);padding:16px;max-width:1120px;margin:0 auto}
+
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.card-header h1{font-size:22px;font-weight:700;color:#1d2430}
+.reporting-period{font-size:14px;color:var(--text-subtle);margin-top:4px}
+.search-wrap{display:flex;align-items:center;gap:8px}
+.search-box{display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:6px;padding:0 12px;height:40px;width:220px;background:#fff}
+.search-box input{border:none;outline:none;font-size:14px;width:100%;font-family:inherit;color:var(--text-default)}
+.search-box input::placeholder{color:#8a929a}
+.filter-btn{width:40px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#3d4650}
+.filter-btn:hover{background:#f1f3f5}
+
+/* KPI cards */
+.kpis{display:flex;gap:16px;margin-top:16px}
+.kpi{flex:1;background:var(--bg-kpi);border:1px solid var(--border);border-radius:8px;padding:9px 17px;display:flex;flex-direction:column;gap:4px}
+.kpi .kpi-top{display:flex;align-items:center;justify-content:space-between}
+.kpi h3{font-size:14px;font-weight:700;color:var(--text-subtle)}
+.kpi .value{font-size:20px;font-weight:700;color:var(--text-dark);line-height:30px}
+.kpi .sub{font-size:12px;color:var(--text-subtle)}
+.kpi svg{color:#4a525c}
+
+.note{font-size:12px;color:var(--text-subtle);line-height:15px;margin:16px 0;max-width:1000px}
+
+/* ---------- Table ---------- */
+.table-wrap{position:relative}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th{background:var(--table-alt);font-weight:400;color:var(--text-subtle);font-size:14px;text-align:left;height:40px;padding:0 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+th.num{text-align:right}
+td{font-size:14px;color:var(--text-default);height:80px;padding:10px 12px;line-height:1.4;vertical-align:middle}
+td.num{text-align:right}
+tbody tr{cursor:pointer}
+tbody tr:nth-child(even) td{background:var(--table-alt)}
+tbody tr:hover td{background:var(--table-hover)}
+tbody tr.expanded td{background:var(--table-hover)}
+tr.total-row td{font-weight:700;background:var(--table-alt) !important;cursor:default;height:80px}
+.expand-btn{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#3d4650;margin-left:auto;transition:transform .15s}
+.expand-btn:hover{background:rgba(0,0,0,.06)}
+tr.expanded .expand-btn{transform:rotate(180deg)}
+.no-results td{text-align:center;color:var(--text-subtle);cursor:default;background:#fff !important}
+
+/* Popover */
+.popover{position:absolute;width:392px;background:#fff;border:1px solid var(--border-light);border-radius:8px;box-shadow:0 8px 24px rgba(20,30,40,.18);padding:16px;z-index:40;display:none}
+.popover.open{display:block}
+.popover h4{font-size:13px;font-weight:700;color:#1d2430;line-height:16px;margin-bottom:10px}
+.pop-label{font-size:11px;color:var(--text-subtle)}
+.pop-handler{display:flex;align-items:center;gap:4px;margin:2px 0 10px}
+.pop-handler a{font-size:13px;color:var(--link);text-decoration:none;font-weight:500}
+.pop-handler a:hover{text-decoration:underline}
+.pop-summary{display:flex;gap:8px;margin-bottom:10px}
+.pop-summary .cell{width:176px}
+.pop-summary .cell b{font-size:13px;color:var(--text-dark)}
+.pop-divider{height:1px;background:var(--border-light);margin-bottom:10px}
+.month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.month-cell{background:var(--bg-kpi);border-radius:6px;padding:8px 10px}
+.month-cell .m{font-size:11px;color:var(--text-subtle)}
+.month-cell .v{font-size:12.5px;font-weight:600;color:var(--text-dark);margin-top:2px}
+
+/* ---------- Sticky footer ---------- */
+.sticky-footer{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--border-light);height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:50}
+.btn-tertiary{display:flex;align-items:center;gap:8px;height:48px;padding:0 16px;border-radius:6px;font-size:15px;color:#3d4650;font-weight:500}
+.btn-tertiary:hover{background:#f1f3f5}
+.btn-primary{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:6px;background:var(--blue);color:#fff;font-size:14px;font-weight:500}
+.btn-primary:hover{background:var(--blue-dark)}
+
+/* Back to top */
+.back-to-top{position:fixed;right:24px;bottom:100px;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 12px rgba(20,30,40,.15);padding:8px 12px;display:none;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:#3d4650;z-index:55}
+.back-to-top.show{display:flex}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(12px);background:#26292e;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;pointer-events:none;transition:all .25s;z-index:100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Placeholder tab content */
+.placeholder{background:var(--bg-page);flex:1;padding:32px}
+.placeholder .card{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:320px;gap:8px;color:var(--text-subtle)}
+.placeholder .card h2{color:#1d2430;font-size:18px}
+</style>
+</head>
+<body>
+
+<!-- Top navigation -->
+<header class="topnav">
+  <div class="brand">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <path d="M20 4 L25 11 H15 Z" fill="#2f5fd0"/>
+      <path d="M20 36 L15 29 H25 Z" fill="#2f5fd0"/>
+      <path d="M4 20 L11 15 V25 Z" fill="#1d2430"/>
+      <path d="M36 20 L29 25 V15 Z" fill="#1d2430"/>
+    </svg>
+    <span class="brand-name">Zero Waste Platform</span>
+    <span class="beta">BETA</span>
+  </div>
+  <div class="right">
+    <span class="date-range">Jan 1, 2026 to Dec 31, 2026</span>
+    <button class="icon-btn" title="Apps" onclick="toast('Apps menu (prototype)')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+    </button>
+    <button class="icon-btn" title="Help" onclick="toast('Help (prototype)')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.6 2.24c-.7.35-1.1.9-1.1 1.66v.35" stroke-linecap="round"/><circle cx="12" cy="16.8" r="0.5" fill="currentColor"/></svg>
+    </button>
+    <div class="avatar">JS</div>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="side-head">
+      <span class="label">REI PLATFORM</span>
+      <button class="icon-btn" onclick="toggleSidebar()" title="Collapse menu" style="width:28px;height:28px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h16"/><path d="M20 10l-3 2 3 2"/></svg>
+      </button>
+    </div>
+    <div class="side-item" onclick="toast('Home (prototype)')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+      Home
+    </div>
+    <div class="side-item" onclick="toast('Account (prototype)')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 19c.8-3 3.4-4.5 6.5-4.5s5.7 1.5 6.5 4.5" stroke-linecap="round"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.7c2.5.2 4.6 1.5 5.4 4.3" stroke-linecap="round"/></svg>
+      Account
+    </div>
+    <div class="side-item" onclick="toast('Supply Chain (prototype)')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.8 7.8 10.5 16M16.2 7.8 13.5 16M8.5 6h7"/></svg>
+      Supply Chain
+    </div>
+
+    <div class="side-section">DASHBOARD <span>⌄</span></div>
+    <div class="side-item sub" onclick="toast('Status (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+      Status
+    </div>
+    <div class="side-item sub" onclick="toast('Activities (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l2 2 3-3M4 13l2 2 3-3M12 7h8M12 14h8M12 20h8M4 19.5h5"/></svg>
+      Activities
+    </div>
+
+    <div class="side-section">TASKS <span>⌄</span></div>
+    <div class="side-item sub active">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 19l-3-5 3-5M17 19l3-5-3-5M14 4l-4 16"/></svg>
+      Waste Tracking Report
+    </div>
+    <div class="side-item sub" onclick="toast('Self-Declaration (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 14l2 2 4-4"/></svg>
+      Self-Declaration
+    </div>
+    <div class="side-item sub" onclick="toast('Verification (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+      Verification
+    </div>
+    <div class="side-item sub" onclick="toast('Trading Relationship (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="8" width="8" height="8" rx="1" transform="rotate(-45 7 12)"/><rect x="13" y="8" width="8" height="8" rx="1" transform="rotate(-45 17 12)"/></svg>
+      Trading Relationship
+    </div>
+
+    <div class="side-section">REPORTING <span>⌄</span></div>
+    <div class="side-item sub" onclick="toast('Analytics (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg>
+      Analytics
+    </div>
+    <div class="side-item sub" onclick="toast('Reports (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+      Reports
+    </div>
+
+    <div class="side-section">SUPPORTING <span>⌄</span></div>
+    <div class="side-item sub" onclick="toast('Documents (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+      Documents
+    </div>
+
+    <div class="side-section">CONFIGURATIONS <span>⌄</span></div>
+    <div class="side-item sub" onclick="toast('Reporting Period (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 15h4"/></svg>
+      Reporting Period
+    </div>
+    <div class="side-item sub" onclick="toast('Due Dates (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="12" cy="15.5" r="2"/></svg>
+      Due Dates
+    </div>
+
+    <div class="side-section">ABOUT THE PROGRAMME <span>⌄</span></div>
+    <div class="side-item sub" onclick="toast('Overview (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>
+      Overview
+    </div>
+    <div class="side-item sub" onclick="toast('References (prototype)')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h13"/><path d="M9 7h6"/></svg>
+      References
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="topbar">
+      <button class="back" onclick="toast('Back to facility list (prototype)')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        North Campus Production Facility
+      </button>
+      <span class="chip">G-FA-1847293856</span>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <button class="tab" data-tab="Monthly Entry">Monthly Entry</button>
+      <button class="tab" data-tab="Acknowledgement">Acknowledgement</button>
+      <button class="tab active" data-tab="Yearly Summary">Yearly Summary</button>
+      <button class="tab" data-tab="Charts">Charts</button>
+      <button class="tab" data-tab="Import">Import</button>
+      <button class="tab" data-tab="Import Log">Import Log</button>
+    </div>
+
+    <!-- Yearly Summary content -->
+    <div class="container" id="content-yearly">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h1>Yearly Summary</h1>
+            <div class="reporting-period">Reporting Period: Jan 1, 2025 to Dec 31, 2025</div>
+          </div>
+          <div class="search-wrap">
+            <div class="search-box">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#6a7178" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              <input type="text" id="search" placeholder="Search..." autocomplete="off">
+            </div>
+            <button class="filter-btn" title="Filter" onclick="toast('Filters (prototype)')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="kpi-top">
+              <h3>Total Waste Generated</h3>
+              <svg width="16" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M10 4h4M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M10 11v6M14 11v6"/></svg>
+            </div>
+            <div class="value">16,367 kg</div>
+            <div class="sub">Across all categories</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <h3>Diverted Waste</h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.8a1 1 0 0 1-.87-1.5l2.2-3.8M7 19l3-1M7 19l1 3M14.4 5.5 13.1 3.3a1 1 0 0 0-1.73 0l-2.2 3.8M14.4 5.5l-3.1.7m3.1-.7-.7-3.1M17 15l2.3.02a1 1 0 0 0 .86-1.51l-2.2-3.8M17 15l-.2-3.2M17 15l-3 1.1"/></svg>
+            </div>
+            <div class="value">14,719 kg</div>
+            <div class="sub">89.9% diversion rate</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <h3>Non-Diverted Waste</h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+            </div>
+            <div class="value">1,648 kg</div>
+            <div class="sub">10.1% of total waste</div>
+          </div>
+        </div>
+
+        <p class="note">Table shows category, treatment, handler, and yearly totals by default — no scrolling needed. Tap ⌄ on any row to reveal its Jan–Dec monthly breakdown (shown expanded below for row 1).</p>
+
+        <div class="table-wrap" id="tableWrap">
+          <table>
+            <colgroup>
+              <col style="width:135px"><col style="width:151px"><col style="width:151px"><col style="width:151px"><col style="width:151px"><col style="width:151px"><col style="width:133px"><col style="width:48px">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Waste Category</th>
+                <th>Mandated</th>
+                <th>Second Classification</th>
+                <th>Third Classification</th>
+                <th>Treatment Method</th>
+                <th>Measurement Method</th>
+                <th class="num">Recovery Rate %</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          <div class="popover" id="popover"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder for other tabs -->
+    <div class="placeholder" id="content-placeholder" style="display:none">
+      <div class="card">
+        <h2 id="placeholder-title"></h2>
+        <p>This tab isn't part of the prototype — switch back to <b>Yearly Summary</b>.</p>
+      </div>
+    </div>
+
+    <!-- Sticky footer -->
+    <div class="sticky-footer">
+      <button class="btn-tertiary" onclick="prevTab()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Previous
+      </button>
+      <button class="btn-primary" onclick="toast('Tab saved ✓')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>
+        Save This Tab
+      </button>
+      <button class="btn-tertiary" onclick="nextTab()">
+        Next
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  Back to top
+</button>
+
+<div class="toast" id="toastEl"></div>
+
+<script>
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const GRAND_TOTAL = 16367;
+
+// Row 1 monthly values are taken directly from the Figma design.
+const rows = [
+  {cat:'General Production Waste', mand:'-', c2:'Plastic', c3:'PET Bottles', treat:'Diverted: Recycle', meas:'Actual Weighing', rate:'85.50', handler:'EcoWaste Solutions', total:1778, monthly:[125,130,118,142,135,128,145,138,152,148,155,162], pct:'10.87'},
+  {cat:'Special Controlled Waste', mand:'Yes', c2:'Chemical Sludge', c3:'-', treat:'Non-Diverted: Incineration with WtE', meas:'Actual Weighing', rate:'-', handler:'HazChem Handlers', total:612},
+  {cat:'General Production Waste', mand:'-', c2:'Metal Scrap', c3:'Aluminum', treat:'Diverted: Recycle', meas:'Estimation', rate:'92.00', handler:'MetalWorks Recovery', total:2145},
+  {cat:'Non Production Waste', mand:'-', c2:'Organic Waste', c3:'Food Scraps', treat:'Diverted: Composting', meas:'Estimation', rate:'78.00', handler:'TerraCompost Co.', total:1520},
+  {cat:'General Production Waste', mand:'-', c2:'Wood Pallets', c3:'-', treat:'Diverted: Reuse', meas:'Actual Weighing', rate:'95.00', handler:'ReNew Pallet Services', total:985},
+  {cat:'Special Controlled Waste', mand:'No', c2:'Electronic Waste', c3:'Circuit Boards', treat:'Diverted: Recycle', meas:'Actual Weighing', rate:'88.75', handler:'E-Cycle Partners', total:430},
+  {cat:'General Production Waste', mand:'-', c2:'Cardboard', c3:'Corrugated', treat:'Diverted: Recycle', meas:'No Measurement', rate:'91.25', handler:'FiberLoop Recycling', total:1590},
+  {cat:'Non Production Waste', mand:'-', c2:'Mixed Office Waste', c3:'-', treat:'Non-Diverted: Landfill', meas:'Estimation', rate:'-', handler:'CityWaste Services', total:724},
+  {cat:'General Production Waste', mand:'-', c2:'Plastic Film', c3:'Stretch Wrap', treat:'Diverted: Recycle', meas:'Actual Weighing', rate:'83.50', handler:'PolyFilm Recovery', total:760},
+  {cat:'Special Controlled Waste', mand:'No', c2:'Oil Filters', c3:'-', treat:'Diverted: Recycle', meas:'Estimation', rate:'70.00', handler:'SafeOil Disposal', total:265},
+  {cat:'General Production Waste', mand:'-', c2:'Mixed Metals', c3:'Steel & Iron', treat:'Diverted: Recycle', meas:'Actual Weighing', rate:'90.00', handler:'MetalWorks Recovery', total:1675},
+  {cat:'Non Production Waste', mand:'-', c2:'Food Waste', c3:'Cafeteria Waste', treat:'Diverted: Anaerobic Digestion', meas:'Estimation', rate:'82.00', handler:'BioDigest Energy', total:1140},
+  {cat:'General Production Waste', mand:'-', c2:'Textile Waste', c3:'Industrial Fabric', treat:'Diverted: Recycle', meas:'Estimation', rate:'76.00', handler:'TexReclaim', total:540},
+  {cat:'Special Controlled Waste', mand:'Yes', c2:'Paint & Solvents', c3:'-', treat:'Non-Diverted: Incineration', meas:'Actual Weighing', rate:'-', handler:'HazChem Handlers', total:312},
+  {cat:'General Production Waste', mand:'-', c2:'Glass', c3:'Mixed Glass', treat:'Diverted: Recycle', meas:'Actual Weighing', rate:'88.00', handler:'ClearGlass Recycling', total:875},
+  {cat:'Non Production Waste', mand:'-', c2:'Paper Waste', c3:'Office Paper', treat:'Diverted: Recycle', meas:'Estimation', rate:'94.00', handler:'PaperLoop Inc.', total:690},
+  {cat:'General Production Waste', mand:'-', c2:'Rubber Waste', c3:'-', treat:'Diverted: Recycle', meas:'Actual Weighing', rate:'81.00', handler:'RubberCycle Co.', total:326},
+];
+
+// Generate deterministic monthly breakdowns for rows without design-specified values
+rows.forEach((r,i)=>{
+  if(r.monthly) return;
+  const base = r.total/12;
+  const vals = [];
+  let sum = 0;
+  for(let m=0;m<11;m++){
+    const v = Math.max(1, Math.round(base*(1+0.14*Math.sin(m*1.7+i*2.3))));
+    vals.push(v); sum += v;
+  }
+  vals.push(Math.max(1, r.total-sum));
+  r.monthly = vals;
+  r.pct = (r.total/GRAND_TOTAL*100).toFixed(2);
+});
+
+const fmtKg = n => n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' kg';
+
+const tbody = document.getElementById('tbody');
+const popover = document.getElementById('popover');
+const tableWrap = document.getElementById('tableWrap');
+let openIdx = null;
+let pinned = false;          // true when opened by click — stays until clicked again/outside
+let hoverOpenTimer, hoverCloseTimer;
+
+function renderTable(filter=''){
+  closePopover();
+  tbody.innerHTML = '';
+  const q = filter.trim().toLowerCase();
+  let shown = 0;
+  rows.forEach((r,i)=>{
+    const hay = [r.cat,r.mand,r.c2,r.c3,r.treat,r.meas,r.rate,r.handler].join(' ').toLowerCase();
+    if(q && !hay.includes(q)) return;
+    shown++;
+    const tr = document.createElement('tr');
+    tr.dataset.idx = i;
+    tr.innerHTML = `
+      <td>${r.cat}</td>
+      <td>${r.mand}</td>
+      <td>${r.c2}</td>
+      <td>${r.c3}</td>
+      <td>${r.treat}</td>
+      <td>${r.meas}</td>
+      <td class="num">${r.rate}</td>
+      <td><button class="expand-btn" title="Show monthly breakdown">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button></td>`;
+    tr.addEventListener('click', e => { e.stopPropagation(); togglePopover(i, tr); });
+    // Hover: open after a short delay, close when leaving (unless pinned by click)
+    tr.addEventListener('mouseenter', () => {
+      clearTimeout(hoverCloseTimer);
+      if (pinned) return;
+      clearTimeout(hoverOpenTimer);
+      hoverOpenTimer = setTimeout(() => showPopover(i, tr, false), 200);
+    });
+    tr.addEventListener('mouseleave', () => {
+      clearTimeout(hoverOpenTimer);
+      if (pinned) return;
+      hoverCloseTimer = setTimeout(closePopover, 250);
+    });
+    tbody.appendChild(tr);
+  });
+  if(!shown){
+    tbody.innerHTML = `<tr class="no-results"><td colspan="8">No rows match "${filter}"</td></tr>`;
+  } else {
+    const totalTr = document.createElement('tr');
+    totalTr.className = 'total-row';
+    totalTr.innerHTML = '<td>TOTAL</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+    tbody.appendChild(totalTr);
+  }
+}
+
+function togglePopover(idx, tr){
+  if(openIdx === idx && pinned){ closePopover(); return; }
+  showPopover(idx, tr, true);
+}
+
+function showPopover(idx, tr, pin){
+  if(openIdx === idx){ pinned = pinned || pin; return; }
+  closePopover();
+  openIdx = idx;
+  pinned = pin;
+  tr.classList.add('expanded');
+  const r = rows[idx];
+  popover.innerHTML = `
+    <h4>Monthly Breakdown — ${r.cat} / ${r.c2}${r.c3 !== '-' ? ' / '+r.c3 : ''}</h4>
+    <div class="pop-label">Waste Handler</div>
+    <div class="pop-handler">
+      <a href="#" onclick="event.preventDefault();event.stopPropagation();toast('Opening ${r.handler} profile (prototype)')">${r.handler}</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2b6cd4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></svg>
+    </div>
+    <div class="pop-summary">
+      <div class="cell"><div class="pop-label">Total</div><b>${fmtKg(r.total)}</b></div>
+      <div class="cell"><div class="pop-label">Percentage</div><b>${r.pct}%</b></div>
+    </div>
+    <div class="pop-divider"></div>
+    <div class="month-grid">
+      ${r.monthly.map((v,m)=>`<div class="month-cell"><div class="m">${MONTHS[m]} 2025</div><div class="v">${fmtKg(v)}</div></div>`).join('')}
+    </div>`;
+  const wrapRect = tableWrap.getBoundingClientRect();
+  const rowRect = tr.getBoundingClientRect();
+  popover.style.top = (rowRect.bottom - wrapRect.top - 30) + 'px';
+  popover.style.right = '56px';
+  popover.classList.add('open');
+  popover.onclick = e => e.stopPropagation();
+}
+
+function closePopover(){
+  popover.classList.remove('open');
+  openIdx = null;
+  pinned = false;
+  tbody.querySelectorAll('tr.expanded').forEach(t=>t.classList.remove('expanded'));
+}
+document.addEventListener('click', closePopover);
+
+// Keep the popover open while the cursor is over it (hover mode)
+popover.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
+popover.addEventListener('mouseleave', () => {
+  if (!pinned) hoverCloseTimer = setTimeout(closePopover, 250);
+});
+
+// Search
+document.getElementById('search').addEventListener('input', e => renderTable(e.target.value));
+
+// Tabs
+const tabs = [...document.querySelectorAll('.tab')];
+function activateTab(tab){
+  tabs.forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  const isYearly = tab.dataset.tab === 'Yearly Summary';
+  document.getElementById('content-yearly').style.display = isYearly ? '' : 'none';
+  document.getElementById('content-placeholder').style.display = isYearly ? 'none' : '';
+  document.getElementById('placeholder-title').textContent = tab.dataset.tab;
+  closePopover();
+}
+tabs.forEach(t => t.addEventListener('click', ()=>activateTab(t)));
+function prevTab(){ const i = tabs.findIndex(t=>t.classList.contains('active')); activateTab(tabs[(i-1+tabs.length)%tabs.length]); }
+function nextTab(){ const i = tabs.findIndex(t=>t.classList.contains('active')); activateTab(tabs[(i+1)%tabs.length]); }
+
+// Sidebar
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('collapsed'); }
+
+// Back to top
+window.addEventListener('scroll', ()=>{
+  document.getElementById('backToTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// Toast
+let toastTimer;
+function toast(msg){
+  const el = document.getElementById('toastEl');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 2200);
+}
+
+renderTable();
+</script>
+</body>
+</html>
