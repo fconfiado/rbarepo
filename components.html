@@ -166,17 +166,22 @@
   .color-chip .label .name { font-weight: 500; display: block; }
   .color-chip .label .val { color: hsl(var(--muted-foreground)); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.68rem; }
 
-  /* Typography */
-  .typo h1 { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 0.5rem; }
-  .typo h2 { font-size: 1.5rem; font-weight: 600; border-bottom: 1px solid hsl(var(--border)); padding-bottom: 0.4rem; margin: 1.75rem 0 0.75rem; }
-  .typo h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
-  .typo p { line-height: 1.7; margin: 0.75rem 0; }
-  .typo p.lead { font-size: 1.1rem; color: hsl(var(--muted-foreground)); }
-  .typo blockquote { border-left: 2px solid hsl(var(--border)); margin: 1rem 0; padding-left: 1rem; font-style: italic; }
+  /* Typography — RBA Online Design System v2 (Univers, Heading/Body scale) */
+  .typo { color: #272b30; }
+  .typo .fig-heading-xl { font-size: 36px; font-weight: 400; line-height: 1.2; color: #0d0d0d; margin: 0 0 0.5rem; }
+  .typo .fig-heading-lg { font-size: 24px; font-weight: 400; line-height: 1.2; color: #0d0d0d; margin: 1.75rem 0 0.75rem; }
+  .typo .fig-heading-md { font-size: 18px; font-weight: 400; line-height: 1.2; color: #0d0d0d; margin: 1.5rem 0 0.5rem; }
+  .typo .fig-heading-sm { font-size: 16px; font-weight: 400; line-height: 1.2; color: #0d0d0d; margin: 1.25rem 0 0.5rem; }
+  .typo .fig-body-lg { font-size: 18px; line-height: 1.4; margin: 0.75rem 0; }
+  .typo .fig-body-md { font-size: 16px; line-height: 1.4; margin: 0.75rem 0; }
+  .typo .fig-body-sm { font-size: 14px; line-height: 1.4; margin: 0.75rem 0; }
+  .typo .fig-body-xs { font-size: 12px; line-height: 1.4; margin: 0.75rem 0; }
+  .typo .subtle { color: #6a7178; }
+  .typo blockquote { border-left: 2px solid #e9ecef; margin: 1rem 0; padding-left: 1rem; font-style: italic; }
   .typo ul { margin: 0.75rem 0; padding-left: 1.5rem; }
-  .typo li { margin: 0.25rem 0; }
-  .typo code { background: hsl(var(--muted)); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-  .typo small { display: block; font-size: 0.8rem; font-weight: 500; color: hsl(var(--muted-foreground)); }
+  .typo li { margin: 0.25rem 0; font-size: 16px; line-height: 1.4; }
+  .typo code { background: #f8f9fa; border: 1px solid #e9ecef; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .typo small { display: block; font-size: 12px; font-weight: 500; color: #6a7178; margin-top: 1rem; }
 
   /* Accordion */
   .accordion { border-top: 1px solid hsl(var(--border)); }
@@ -203,13 +208,16 @@
   .accordion-content > div { overflow: hidden; }
   .accordion-content .inner { padding: 0 0.25rem 1rem; font-size: 0.875rem; color: hsl(var(--muted-foreground)); line-height: 1.6; }
 
-  /* Alerts */
-  .alert { position: relative; border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 1rem 1rem 1rem 2.75rem; margin-bottom: 1rem; }
-  .alert svg.icon { position: absolute; left: 1rem; top: 1.1rem; width: 1rem; height: 1rem; }
-  .alert .title { font-weight: 500; margin: 0 0 0.2rem; line-height: 1; }
-  .alert .desc { font-size: 0.85rem; color: hsl(var(--muted-foreground)); margin: 0; }
-  .alert.destructive { border-color: hsl(var(--destructive) / 0.5); color: hsl(var(--destructive)); }
-  .alert.destructive .desc { color: hsl(var(--destructive) / 0.9); }
+  /* Alerts — RBA Online Design System v2 */
+  .alert { position: relative; display: flex; align-items: flex-start; gap: 8px; border-radius: 8px; padding: 8px 8px 8px 8px; margin-bottom: 0.75rem; }
+  .alert svg.icon { flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px; }
+  .alert .body { flex: 1; min-width: 0; }
+  .alert .title { font-family: inherit; font-size: 14px; line-height: 1.4; margin: 0; }
+  .alert.type-info { background: #eaf4fe; color: #0d0d0d; }
+  .alert.type-info svg.icon { color: #446e95; }
+  .alert.type-success { background: #cef8e0; color: #008f5d; }
+  .alert.type-warning { background: #ffeccc; color: #b14c00; }
+  .alert.type-error { background: #ffddd6; color: #d31510; }
 
   /* Buttons — RBA Online Design System v2 (Figma node 5230-4558) */
   .fig-group-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: hsl(var(--muted-foreground)); margin: 0 0 0.75rem; }
@@ -252,34 +260,41 @@
   .fig-btn.variant-tertiary:active:not(:disabled) { background: #edf0f6; color: #344978; }
   .fig-btn.variant-tertiary:disabled { background: rgba(0, 0, 0, 0.12); color: #adb5bd; cursor: not-allowed; }
 
-  /* Checkboxes */
-  .check-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.9rem; }
-  .checkbox { position: relative; width: 1rem; height: 1rem; flex-shrink: 0; }
+  /* Checkboxes — RBA Online Design System v2 */
+  .check-row { display: flex; align-items: center; gap: 8px; margin-bottom: 0.9rem; }
+  .checkbox { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
   .checkbox input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
   .checkbox .box {
     position: absolute; inset: 0;
-    border: 1px solid hsl(var(--primary));
+    border: 1px solid #002c5f;
     border-radius: 4px;
-    background: hsl(var(--background));
+    background: rgba(255, 255, 255, 0.4);
     display: flex; align-items: center; justify-content: center;
   }
-  .checkbox .box svg { width: 11px; height: 11px; opacity: 0; color: hsl(var(--primary-foreground)); }
-  .checkbox input:checked + .box { background: hsl(var(--primary)); }
-  .checkbox input:checked + .box svg { opacity: 1; }
-  .checkbox input:disabled + .box { opacity: 0.5; cursor: not-allowed; }
-  .checkbox input:focus-visible + .box { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
-  label.check-label { font-size: 0.875rem; cursor: pointer; user-select: none; }
-  label.check-label.disabled { opacity: 0.5; cursor: not-allowed; }
+  .checkbox .box svg { width: 11px; height: 11px; opacity: 0; color: #ffffff; }
+  .checkbox input:checked + .box, .checkbox input:indeterminate + .box { background: #00234c; border-color: #002c5f; }
+  .checkbox input:checked + .box svg.check, .checkbox input:indeterminate + .box svg.dash { opacity: 1; }
+  .checkbox input:indeterminate + .box svg.check { display: none; }
+  .checkbox input:not(:indeterminate) + .box svg.dash { display: none; }
+  .checkbox input:disabled + .box { background: rgba(0, 0, 0, 0.12); border-color: #ced4da; cursor: not-allowed; }
+  .checkbox input:disabled:checked + .box, .checkbox input:disabled:indeterminate + .box { background: #edf0f3; }
+  .checkbox input:disabled + .box svg { color: #adb5bd; }
+  .checkbox input:focus-visible + .box { outline: 2px solid #00234c; outline-offset: 2px; }
+  label.check-label { font-size: 14px; line-height: 1.4; color: #272b30; cursor: pointer; user-select: none; }
+  label.check-label.disabled { color: #adb5bd; cursor: not-allowed; }
 
-  /* Table */
-  table.data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
-  table.data-table caption { text-align: left; color: hsl(var(--muted-foreground)); font-size: 0.85rem; margin-bottom: 0.75rem; }
-  table.data-table thead tr { border-bottom: 1px solid hsl(var(--border)); }
-  table.data-table th { text-align: left; padding: 0.6rem 1rem; color: hsl(var(--muted-foreground)); font-weight: 500; }
-  table.data-table td { padding: 0.6rem 1rem; border-bottom: 1px solid hsl(var(--border)); }
-  table.data-table tbody tr:hover { background: hsl(var(--muted) / 0.5); }
-  table.data-table tfoot td { padding: 0.6rem 1rem; font-weight: 500; }
-  .badge { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.72rem; font-weight: 500; background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); }
+  /* Table — RBA Online Design System v2 */
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 14px; background: #ffffff; }
+  table.data-table caption { text-align: left; color: #6a7178; font-size: 14px; margin-bottom: 0.75rem; }
+  table.data-table thead tr { background: #f2f6fa; }
+  table.data-table th { text-align: left; padding: 10px 12px; height: 40px; color: #6a7178; font-weight: 400; font-size: 14px; }
+  table.data-table td { padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #272b30; }
+  table.data-table tbody tr:nth-child(even) { background: #f2f6fa; }
+  table.data-table tfoot td { padding: 10px 12px; font-weight: 500; }
+  .badge { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.72rem; font-weight: 500; background: #edf0f3; color: #272b30; }
+  .badge.badge-success { background: #cef8e0; color: #008f5d; }
+  .badge.badge-warning { background: #ffeccc; color: #b14c00; }
+  .badge.badge-error { background: #ffddd6; color: #d31510; }
 
   @media (max-width: 800px) {
     .layout { grid-template-columns: 1fr; }
@@ -314,7 +329,7 @@
 
     <section class="block" id="variables">
       <h2>Variables</h2>
-      <p class="desc">Design tokens from the shadcn/ui default (zinc) theme, exposed as CSS custom properties. Values shown are the currently active theme.</p>
+      <p class="desc">Design tokens from the RBA Online Design System v2 Figma file — Color, Spacing, Radius, and Typography primitives.</p>
       <div class="card">
         <table class="vars" id="vars-table">
           <thead><tr><th>Token</th><th>Value</th><th></th></tr></thead>
@@ -327,28 +342,29 @@
 
     <section class="block" id="colors">
       <h2>Colors</h2>
-      <p class="desc">Semantic color roles rendered from the same tokens above.</p>
+      <p class="desc">Semantic color roles used across Buttons, Alerts, Checkboxes, and Tables.</p>
       <div class="color-grid" id="color-grid"></div>
     </section>
 
     <section class="block" id="typography">
       <h2>Typography</h2>
-      <p class="desc">Headings, body text, and inline elements.</p>
+      <p class="desc">Heading and Body type scales (Univers), matching the Figma Typography page.</p>
       <div class="card typo">
-        <h1>The Joke Tax Chronicles</h1>
-        <p class="lead">Once upon a time, in a far-off land, there lived a very lazy king who spent all day lounging on his throne.</p>
-        <h2>The King's Plan</h2>
-        <p>The king thought long and hard, and finally came up with a brilliant plan: he would tax the jokes in the kingdom.</p>
-        <blockquote>"After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."</blockquote>
-        <h3>The Joke Tax</h3>
-        <p>The king's subjects were not amused. They grumbled and complained, but the king was firm.</p>
+        <p class="fig-heading-xl">heading-xl — 36px</p>
+        <p class="fig-heading-lg">heading-lg — 24px</p>
+        <p class="fig-heading-md">heading-md — 18px</p>
+        <p class="fig-heading-sm">heading-sm — 16px</p>
+        <p class="fig-body-lg">body-lg — 18px. The spectacle before us was indeed sublime.</p>
+        <p class="fig-body-md">body-md — 16px. The spectacle before us was indeed sublime.</p>
+        <p class="fig-body-sm">body-sm — 14px. The spectacle before us was indeed sublime.</p>
+        <p class="fig-body-xs subtle">body-xs — 12px, subtle text color. The spectacle before us was indeed sublime.</p>
+        <blockquote class="fig-body-md">"Text styles bind together multiple variables and use t-shirt naming to distinguish between sizes."</blockquote>
         <ul>
-          <li>1st level of puns: 5 gold coins</li>
-          <li>2nd level of jokes: 10 gold coins</li>
-          <li>3rd level of one-liners: 20 gold coins</li>
+          <li>heading / body sizes share the same t-shirt scale (xl · lg · md · sm)</li>
+          <li>Heading line-height: 1.2 — Body line-height: 1.4</li>
+          <li>Inline code sample: <code>--radius/border-radius-sm</code></li>
         </ul>
-        <p>As a result, people stopped telling jokes, and the kingdom fell into a gloom. Use <code>--radius</code> to control corner rounding.</p>
-        <small>Last updated July 2026</small>
+        <small>Font family: Univers (Regular)</small>
       </div>
     </section>
 
@@ -381,17 +397,23 @@
 
     <section class="block" id="alerts">
       <h2>Alerts</h2>
-      <p class="desc">Displays a callout for user attention.</p>
+      <p class="desc">Info, Success, Warning, and Error notification types (Figma node 2226-25296).</p>
       <div class="card">
-        <div class="alert">
+        <div class="alert type-info">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-          <p class="title">Heads up!</p>
-          <p class="desc">You can add components to your app using the CLI.</p>
+          <div class="body"><p class="title">Notification Title</p></div>
         </div>
-        <div class="alert destructive">
+        <div class="alert type-success">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <div class="body"><p class="title">Notification Title</p></div>
+        </div>
+        <div class="alert type-warning">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <div class="body"><p class="title">Notification Title</p></div>
+        </div>
+        <div class="alert type-error">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-          <p class="title">Error</p>
-          <p class="desc">Your session has expired. Please log in again.</p>
+          <div class="body"><p class="title">Notification Title</p></div>
         </div>
       </div>
     </section>
@@ -432,35 +454,52 @@
 
     <section class="block" id="checkboxes">
       <h2>Checkboxes</h2>
-      <p class="desc">A control that allows the user to toggle between checked states.</p>
+      <p class="desc">Deselected, Selected, Intermediate, and Disabled states (Figma node 5321-3527).</p>
       <div class="card">
         <div class="check-row">
           <span class="checkbox">
-            <input type="checkbox" id="cb1" checked>
-            <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <input type="checkbox" id="cb1">
+            <span class="box"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
           </span>
-          <label class="check-label" for="cb1">Accept terms and conditions</label>
+          <label class="check-label" for="cb1">Deselected</label>
         </div>
         <div class="check-row">
           <span class="checkbox">
-            <input type="checkbox" id="cb2">
-            <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <input type="checkbox" id="cb2" checked>
+            <span class="box"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
           </span>
-          <label class="check-label" for="cb2">Send me marketing emails</label>
+          <label class="check-label" for="cb2">Selected</label>
         </div>
         <div class="check-row">
           <span class="checkbox">
-            <input type="checkbox" id="cb3" disabled>
-            <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <input type="checkbox" id="cb3" data-indeterminate="true">
+            <span class="box">
+              <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg class="dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><path d="M5 12h14"/></svg>
+            </span>
           </span>
-          <label class="check-label disabled" for="cb3">Disabled option</label>
+          <label class="check-label" for="cb3">Intermediate</label>
+        </div>
+        <div class="check-row">
+          <span class="checkbox">
+            <input type="checkbox" id="cb4" disabled>
+            <span class="box"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </span>
+          <label class="check-label disabled" for="cb4">Deselected, disabled</label>
+        </div>
+        <div class="check-row">
+          <span class="checkbox">
+            <input type="checkbox" id="cb5" checked disabled>
+            <span class="box"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </span>
+          <label class="check-label disabled" for="cb5">Selected, disabled</label>
         </div>
       </div>
     </section>
 
     <section class="block" id="tables">
       <h2>Tables</h2>
-      <p class="desc">A responsive data table.</p>
+      <p class="desc">Header and data cell styling from the Table Invoice template (Figma node 3871-34352), with zebra rows.</p>
       <div class="card">
         <table class="data-table">
           <caption>A list of your recent invoices.</caption>
@@ -468,10 +507,10 @@
             <tr><th>Invoice</th><th>Status</th><th>Method</th><th style="text-align:right">Amount</th></tr>
           </thead>
           <tbody>
-            <tr><td>INV001</td><td><span class="badge">Paid</span></td><td>Credit Card</td><td style="text-align:right">$250.00</td></tr>
-            <tr><td>INV002</td><td><span class="badge">Pending</span></td><td>PayPal</td><td style="text-align:right">$150.00</td></tr>
-            <tr><td>INV003</td><td><span class="badge">Unpaid</span></td><td>Bank Transfer</td><td style="text-align:right">$350.00</td></tr>
-            <tr><td>INV004</td><td><span class="badge">Paid</span></td><td>Credit Card</td><td style="text-align:right">$450.00</td></tr>
+            <tr><td>INV001</td><td><span class="badge badge-success">Paid</span></td><td>Credit Card</td><td style="text-align:right">$250.00</td></tr>
+            <tr><td>INV002</td><td><span class="badge badge-warning">Pending</span></td><td>PayPal</td><td style="text-align:right">$150.00</td></tr>
+            <tr><td>INV003</td><td><span class="badge badge-error">Unpaid</span></td><td>Bank Transfer</td><td style="text-align:right">$350.00</td></tr>
+            <tr><td>INV004</td><td><span class="badge badge-success">Paid</span></td><td>Credit Card</td><td style="text-align:right">$450.00</td></tr>
           </tbody>
           <tfoot>
             <tr><td colspan="3">Total</td><td style="text-align:right">$1,200.00</td></tr>
@@ -507,51 +546,94 @@
     });
   });
 
-  // Tokens: render Variables table + Colors grid from live computed values
-  const tokens = [
-    ['--background', 'Page background'],
-    ['--foreground', 'Default text color'],
-    ['--card', 'Card background'],
-    ['--card-foreground', 'Card text color'],
-    ['--popover', 'Popover background'],
-    ['--popover-foreground', 'Popover text color'],
-    ['--primary', 'Primary brand color'],
-    ['--primary-foreground', 'Text on primary'],
-    ['--secondary', 'Secondary surface'],
-    ['--secondary-foreground', 'Text on secondary'],
-    ['--muted', 'Muted surface'],
-    ['--muted-foreground', 'Muted text'],
-    ['--accent', 'Accent surface (hover states)'],
-    ['--accent-foreground', 'Text on accent'],
-    ['--destructive', 'Destructive / error color'],
-    ['--destructive-foreground', 'Text on destructive'],
-    ['--border', 'Default border color'],
-    ['--input', 'Input border color'],
-    ['--ring', 'Focus ring color'],
+  // RBA Online Design System v2 — tokens pulled from Figma (Variables, Typography, Buttons, Alerts, Checkboxes, Tables)
+  const colorTokens = [
+    ['text/strong', '#0d0d0d', 'Strong / heading text'],
+    ['text/default', '#272b30', 'Default body text'],
+    ['text/subtle', '#6a7178', 'Secondary / muted text'],
+    ['text/disabled', '#adb5bd', 'Disabled text'],
+    ['text/success', '#008f5d', 'Success text'],
+    ['text/warning', '#b14c00', 'Warning text'],
+    ['text/error', '#d31510', 'Error text'],
+    ['text/info', '#446e95', 'Info text'],
+    ['text/inverse-default', '#ffffff', 'Text on filled/brand backgrounds'],
+    ['bg/brand/brand', '#00234c', 'Brand fill (checkbox selected)'],
+    ['bg/brand/brand-subtle', '#e6eaef', 'Brand subtle fill'],
+    ['bg/success/default', '#cef8e0', 'Success alert background'],
+    ['bg/warning/default', '#ffeccc', 'Warning alert background'],
+    ['bg/error/default', '#ffddd6', 'Error alert background'],
+    ['bg/info/default', '#eaf4fe', 'Info alert background'],
+    ['bg/surface/surface', '#edf0f3', 'Neutral surface'],
+    ['bg/gray/gray-subtler', '#f8f9fa', 'Subtle gray surface'],
+    ['bg/table/table-column-alternate', '#f2f6fa', 'Table header / zebra row'],
+    ['bg/neutral/neutral-disabled', 'rgba(0,0,0,0.12)', 'Disabled fill'],
+    ['border/subtle', '#e9ecef', 'Subtle divider / border'],
+    ['border/default', '#ced4da', 'Default / disabled border'],
+    ['border/brand', '#002c5f', 'Brand border (checkbox)'],
+    ['border/focus', '#00234c', 'Focus ring / pressed border'],
+    ['button/primary-default', '#4967a9', 'Primary button fill'],
+    ['button/primary-hover', '#425e9a', 'Primary button hover'],
+    ['button/primary-active', '#344978', 'Primary button pressed'],
   ];
 
+  const spacingTokens = [
+    ['spacing/spacing-xs', '4px'],
+    ['spacing/spacing-sm', '8px'],
+    ['spacing/spacing-md', '12px'],
+    ['spacing/spacing-base', '16px'],
+    ['spacing/spacing-xl', '32px'],
+  ];
+
+  const radiusTokens = [
+    ['radius/border-radius-sm', '4px'],
+    ['radius/border-radius-md', '8px'],
+    ['radius/border-radius-lg', '16px'],
+    ['radius/border-radius-ring', '12px'],
+    ['radius/border-radius-round', '100px'],
+  ];
+
+  const typeTokens = [
+    ['font-family-primary', 'Univers'],
+    ['font-family-condensed', 'Univers Condensed'],
+    ['heading-size-xl', '36px, line-height 1.2'],
+    ['heading-size-lg', '24px, line-height 1.2'],
+    ['heading-size-md', '18px, line-height 1.2'],
+    ['heading-size-sm', '16px, line-height 1.2'],
+    ['body-size-lg', '18px, line-height 1.4'],
+    ['body-size-md', '16px, line-height 1.4'],
+    ['body-size-sm', '14px, line-height 1.4'],
+    ['body-size-xs', '12px, line-height 1.4'],
+  ];
+
+  function groupHeader(label) {
+    return `<tr><td colspan="3" style="background:#f8f9fa;color:#6a7178;font-weight:600;text-transform:uppercase;font-size:0.7rem;letter-spacing:0.04em;">${label}</td></tr>`;
+  }
+
   function renderTokens() {
-    const cs = getComputedStyle(root);
     const tbody = document.querySelector('#vars-table tbody');
-    tbody.innerHTML = tokens.map(([name, desc]) => {
-      const val = cs.getPropertyValue(name).trim();
-      return `<tr>
-        <td><code>${name}</code></td>
-        <td><span class="swatch-dot" style="background: hsl(${val})"></span><code>${val}</code></td>
+    let rows = groupHeader('Color');
+    rows += colorTokens.map(([name, val, desc]) => `<tr>
+        <td><span class="swatch-dot" style="background:${val}"></span><code>${name}</code></td>
+        <td><code>${val}</code></td>
         <td style="color:hsl(var(--muted-foreground))">${desc}</td>
-      </tr>`;
-    }).join('') + `<tr><td><code>--radius</code></td><td><code>${cs.getPropertyValue('--radius').trim()}</code></td><td style="color:hsl(var(--muted-foreground))">Base corner radius</td></tr>`;
+      </tr>`).join('');
+    rows += groupHeader('Spacing');
+    rows += spacingTokens.map(([name, val]) => `<tr><td><code>${name}</code></td><td><code>${val}</code></td><td></td></tr>`).join('');
+    rows += groupHeader('Radius');
+    rows += radiusTokens.map(([name, val]) => `<tr><td><code>${name}</code></td><td><code>${val}</code></td><td></td></tr>`).join('');
+    rows += groupHeader('Typography');
+    rows += typeTokens.map(([name, val]) => `<tr><td><code>${name}</code></td><td><code>${val}</code></td><td></td></tr>`).join('');
+    tbody.innerHTML = rows;
 
     const grid = document.getElementById('color-grid');
-    grid.innerHTML = tokens.map(([name, desc]) => {
-      const val = cs.getPropertyValue(name).trim();
-      return `<div class="color-chip">
-        <div class="fill" style="background: hsl(${val})"></div>
-        <div class="label"><span class="name">${name.replace('--','')}</span><span class="val">${val}</span></div>
-      </div>`;
-    }).join('');
+    grid.innerHTML = colorTokens.map(([name, val, desc]) => `<div class="color-chip">
+        <div class="fill" style="background:${val}"></div>
+        <div class="label"><span class="name">${name}</span><span class="val">${val}</span></div>
+      </div>`).join('');
   }
   renderTokens();
+
+  document.querySelectorAll('#checkboxes input[data-indeterminate]').forEach(cb => { cb.indeterminate = true; });
 </script>
 
 </body>
