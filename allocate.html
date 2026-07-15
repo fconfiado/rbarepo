@@ -6,7 +6,9 @@
 <title>Zero Waste Platform — Allocate to My Customers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
 <style>
+.msi{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;flex-shrink:0;user-select:none}
 :root{
   --text-default:#272b30; --text-subtle:#6a7178; --text-dark:#26292e;
   --border:#ced4da; --border-light:#e9ecef;
@@ -47,14 +49,14 @@ input,textarea{font-family:inherit}
 .side-item:hover{background:#f6f8fa}
 .side-item.active{color:var(--blue);font-weight:600;border-left-color:var(--blue)}
 .side-item.sub{padding-left:28px}
-.side-item svg{color:#4a525c}
-.side-item.active svg{color:var(--blue)}
+.side-item .msi{color:#4a525c}
+.side-item.active .msi{color:var(--blue)}
 
 /* ---------- Body ---------- */
 .main{flex:1;display:flex;flex-direction:column;min-width:0;background:#fff}
 .topbar{height:44px;display:flex;align-items:center;gap:10px;padding:0 24px;font-size:14px}
 .topbar .context{display:flex;align-items:center;gap:8px;color:#1d2430;font-weight:600}
-.topbar .context svg{color:#3d4650}
+.topbar .context .msi{color:#3d4650}
 
 .tabs{display:flex;gap:8px;padding:0 16px;border-bottom:1px solid var(--border-light)}
 .tab{padding:12px 16px;font-size:14px;color:var(--text-subtle);border-bottom:2px solid transparent;margin-bottom:-1px}
@@ -93,7 +95,7 @@ input,textarea{font-family:inherit}
 /* Facility row */
 .facility-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0 16px;flex-wrap:wrap}
 .facility-left{display:flex;align-items:center;gap:12px}
-.facility-left svg{color:#3d4650}
+.facility-left .msi{color:#3d4650}
 .facility-name{font-size:16px;font-weight:700;color:#1d2430}
 .facility-id{font-size:14px;color:var(--text-subtle)}
 .facility-right{display:flex;align-items:center;gap:14px}
@@ -106,7 +108,7 @@ input,textarea{font-family:inherit}
 
 /* Over-allocation alert */
 .alert{display:flex;align-items:flex-start;gap:8px;border-radius:8px;padding:10px 12px;margin-bottom:16px;background:var(--amber-soft);color:var(--amber-text);font-size:14px;line-height:1.4}
-.alert svg{flex-shrink:0;margin-top:1px}
+.alert .msi{flex-shrink:0;margin-top:1px}
 
 /* Allocation method */
 .method-box{border:1px solid var(--border-light);border-radius:8px;padding:14px 16px;margin-bottom:24px;background:var(--bg-kpi)}
@@ -255,10 +257,10 @@ input,textarea{font-family:inherit}
   <div class="right">
     <span class="date-range">Jan 1, 2026 to Dec 31, 2026</span>
     <button class="icon-btn" title="Apps" onclick="toast('Apps menu (prototype)')">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+      <span class="msi" style="font-size:20px;">apps</span>
     </button>
     <button class="icon-btn" title="Help" onclick="toast('Help (prototype)')">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.6 2.24c-.7.35-1.1.9-1.1 1.66v.35" stroke-linecap="round"/><circle cx="12" cy="16.8" r="0.5" fill="currentColor"/></svg>
+      <span class="msi" style="font-size:20px;">help</span>
     </button>
     <div class="avatar">JS</div>
   </div>
@@ -270,83 +272,83 @@ input,textarea{font-family:inherit}
     <div class="side-head">
       <span class="label">REI PLATFORM</span>
       <button class="icon-btn" onclick="toggleSidebar()" title="Collapse menu" style="width:28px;height:28px">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h16"/><path d="M20 10l-3 2 3 2"/></svg>
+        <span class="msi" style="font-size:18px;">menu_open</span>
       </button>
     </div>
     <div class="side-item" onclick="toast('Home (prototype)')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+      <span class="msi" style="font-size:18px;">home</span>
       Home
     </div>
     <div class="side-item" onclick="toast('Account (prototype)')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 19c.8-3 3.4-4.5 6.5-4.5s5.7 1.5 6.5 4.5" stroke-linecap="round"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.7c2.5.2 4.6 1.5 5.4 4.3" stroke-linecap="round"/></svg>
+      <span class="msi" style="font-size:18px;">group</span>
       Account
     </div>
     <div class="side-item" onclick="toast('Supply Chain (prototype)')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.8 7.8 10.5 16M16.2 7.8 13.5 16M8.5 6h7"/></svg>
+      <span class="msi" style="font-size:18px;">hub</span>
       Supply Chain
     </div>
 
     <div class="side-section">DASHBOARD <span>⌄</span></div>
     <div class="side-item sub" onclick="toast('Status (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+      <span class="msi" style="font-size:17px;">description</span>
       Status
     </div>
     <div class="side-item sub" onclick="toast('Activities (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l2 2 3-3M4 13l2 2 3-3M12 7h8M12 14h8M12 20h8M4 19.5h5"/></svg>
+      <span class="msi" style="font-size:17px;">checklist</span>
       Activities
     </div>
 
     <div class="side-section">TASKS <span>⌄</span></div>
     <div class="side-item sub" onclick="location.href='yearly-summary.html'">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 19l-3-5 3-5M17 19l3-5-3-5M14 4l-4 16"/></svg>
+      <span class="msi" style="font-size:17px;">data_object</span>
       Waste Tracking Report
     </div>
     <div class="side-item sub" onclick="toast('Self-Declaration (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 14l2 2 4-4"/></svg>
+      <span class="msi" style="font-size:17px;">task</span>
       Self-Declaration
     </div>
     <div class="side-item sub" onclick="toast('Verification (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+      <span class="msi" style="font-size:17px;">verified_user</span>
       Verification
     </div>
     <div class="side-item sub active">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="8" width="8" height="8" rx="1" transform="rotate(-45 7 12)"/><rect x="13" y="8" width="8" height="8" rx="1" transform="rotate(-45 17 12)"/></svg>
+      <span class="msi" style="font-size:17px;">handshake</span>
       Trading Relationship
     </div>
 
     <div class="side-section">REPORTING <span>⌄</span></div>
     <div class="side-item sub" onclick="toast('Analytics (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg>
+      <span class="msi" style="font-size:17px;">bar_chart</span>
       Analytics
     </div>
     <div class="side-item sub" onclick="toast('Reports (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+      <span class="msi" style="font-size:17px;">summarize</span>
       Reports
     </div>
 
     <div class="side-section">SUPPORTING <span>⌄</span></div>
     <div class="side-item sub" onclick="toast('Documents (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+      <span class="msi" style="font-size:17px;">article</span>
       Documents
     </div>
 
     <div class="side-section">CONFIGURATIONS <span>⌄</span></div>
     <div class="side-item sub" onclick="toast('Reporting Period (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 15h4"/></svg>
+      <span class="msi" style="font-size:17px;">edit_calendar</span>
       Reporting Period
     </div>
     <div class="side-item sub" onclick="toast('Due Dates (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="12" cy="15.5" r="2"/></svg>
+      <span class="msi" style="font-size:17px;">event</span>
       Due Dates
     </div>
 
     <div class="side-section">ABOUT THE PROGRAMME <span>⌄</span></div>
     <div class="side-item sub" onclick="toast('Overview (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>
+      <span class="msi" style="font-size:17px;">info</span>
       Overview
     </div>
     <div class="side-item sub" onclick="toast('References (prototype)')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h13"/><path d="M9 7h6"/></svg>
+      <span class="msi" style="font-size:17px;">menu_book</span>
       References
     </div>
   </nav>
@@ -355,9 +357,9 @@ input,textarea{font-family:inherit}
   <div class="main">
     <div class="topbar">
       <div class="context">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.8 7.8 10.5 16M16.2 7.8 13.5 16M8.5 6h7"/></svg>
+        <span class="msi" style="font-size:18px;">hub</span>
         Supply Chain (32)
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        <span class="msi" style="font-size:14px;">expand_more</span>
       </div>
     </div>
 
@@ -376,14 +378,14 @@ input,textarea{font-family:inherit}
           </div>
           <div class="search-wrap">
             <div class="search-box">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#6a7178" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              <span class="msi" style="font-size:17px;color:#6a7178;">search</span>
               <input type="text" id="search" placeholder="Search..." autocomplete="off">
             </div>
             <button class="filter-btn" title="Filter" onclick="toast('Filters (prototype)')">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+              <span class="msi" style="font-size:18px;">filter_list</span>
             </button>
             <button class="filter-btn" title="Export CSV" onclick="exportCSV()">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>
+              <span class="msi" style="font-size:18px;">download</span>
             </button>
           </div>
         </div>
@@ -395,41 +397,41 @@ input,textarea{font-family:inherit}
           </div>
           <div class="date-filter">
             <button class="date-nav" id="datePrev" onclick="stepQuarter(-1)" title="Previous period">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              <span class="msi" style="font-size:16px;">chevron_left</span>
             </button>
             <div class="date-display">
               <span id="dateLabel">Jan 1 - Mar 31, 2026</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a7178" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              <span class="msi" style="font-size:16px;color:#6a7178;">calendar_month</span>
             </div>
             <button class="date-nav" id="dateNext" onclick="stepQuarter(1)" title="Next period">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              <span class="msi" style="font-size:16px;">chevron_right</span>
             </button>
           </div>
         </div>
 
         <div class="facility-row">
           <div class="facility-left">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-6h4v6M13 21v-3h4v3M13 13h4"/></svg>
+            <span class="msi" style="font-size:22px;">warehouse</span>
             <span class="facility-name" id="facName">Houston Chemical Plant</span>
             <span class="facility-id" id="facId">G-FA-1847293056</span>
           </div>
           <div class="facility-right">
             <button class="btn-secondary-s" onclick="openAssignModal()">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              <span class="msi" style="font-size:14px;">add</span>
               Assign Customer
             </button>
             <span class="fac-counter" id="facCounter">1 of 3</span>
             <button class="page-btn" id="facPrev" onclick="stepFacility(-1)" title="Previous facility">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              <span class="msi" style="font-size:15px;">chevron_left</span>
             </button>
             <button class="page-btn" id="facNext" onclick="stepFacility(1)" title="Next facility">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              <span class="msi" style="font-size:15px;">chevron_right</span>
             </button>
           </div>
         </div>
 
         <div id="overAlert" style="display:none" class="alert">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <span class="msi" style="font-size:18px;">warning</span>
           <span id="overAlertText"></span>
         </div>
 
@@ -453,11 +455,11 @@ input,textarea{font-family:inherit}
           <span id="bottomLabel">Waste Allocation: 1 to 4 of 4</span>
           <div class="pager">
             <button disabled title="Previous page">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              <span class="msi" style="font-size:14px;">chevron_left</span>
             </button>
             <button class="current">1</button>
             <button disabled title="Next page">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              <span class="msi" style="font-size:14px;">chevron_right</span>
             </button>
           </div>
         </div>
@@ -475,23 +477,23 @@ input,textarea{font-family:inherit}
     <!-- Sticky footer -->
     <div class="sticky-footer">
       <button class="btn-tertiary" onclick="toast('Previous section (prototype)')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span class="msi" style="font-size:18px;">arrow_back</span>
         Previous
       </button>
       <button class="btn-primary" onclick="toast('Tab saved ✓')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>
+        <span class="msi" style="font-size:16px;">bookmark</span>
         Save This Tab
       </button>
       <button class="btn-tertiary" onclick="toast('Next section (prototype)')">
         Next
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span class="msi" style="font-size:18px;">arrow_forward</span>
       </button>
     </div>
   </div>
 </div>
 
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <span class="msi" style="font-size:18px;">arrow_upward</span>
   Back to top
 </button>
 
@@ -502,7 +504,7 @@ input,textarea{font-family:inherit}
     <div class="modal-head">
       <h3>Assign Customer</h3>
       <button class="modal-close" onclick="closeAssignModal()" title="Close" aria-label="Close">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        <span class="msi" style="font-size:18px;">close</span>
       </button>
     </div>
     <div class="form-field">
@@ -652,11 +654,11 @@ function pagerHTML(catKey, page, pages){
   return `
     <div class="pager">
       <button ${page===1?'disabled':''} onclick="setPage('${catKey}',${page-1})" title="Previous page">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        <span class="msi" style="font-size:14px;">chevron_left</span>
       </button>
       ${btns}
       <button ${page===pages?'disabled':''} onclick="setPage('${catKey}',${page+1})" title="Next page">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        <span class="msi" style="font-size:14px;">chevron_right</span>
       </button>
     </div>`;
 }
@@ -735,11 +737,11 @@ function renderCards(){
       </div>
       <div class="cust-head">
         <span class="cust-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 19c.8-3 3.4-4.5 6.5-4.5s5.7 1.5 6.5 4.5" stroke-linecap="round"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.7c2.5.2 4.6 1.5 5.4 4.3" stroke-linecap="round"/></svg>
+          <span class="msi" style="font-size:16px;">group</span>
           Customers: ${custs.length}
         </span>
         <button class="collapse-btn" onclick="toggleCollapse('${cat.key}')" title="Collapse customer list">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          <span class="msi" style="font-size:15px;">expand_more</span>
         </button>
       </div>
       <div class="cust-body">
