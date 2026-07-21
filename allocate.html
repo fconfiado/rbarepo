@@ -166,9 +166,16 @@ input,textarea{font-family:inherit}
 .cust-table th.ctl{text-align:center}
 .cust-table td{font-size:13px;padding:8px 12px;vertical-align:middle;border-top:1px solid var(--border-light)}
 .cust-table tbody tr:nth-child(even) td{background:var(--table-alt)}
+.cust-table tbody tr:hover td{background:var(--table-hover)}
 .cust-name{font-weight:600;color:#1d2430}
 .cust-id{font-size:11px;color:var(--text-subtle);margin-top:2px}
 .cell-ctl{display:flex;align-items:center;justify-content:flex-end;gap:8px}
+
+/* Unassign Customer (revealed on row hover) */
+.unassign-btn{position:relative;width:24px;height:24px;border-radius:6px;display:none;align-items:center;justify-content:center;color:#3d4650;flex-shrink:0}
+.cust-table tbody tr:hover .unassign-btn{display:inline-flex}
+.unassign-btn:hover{background:rgba(0,0,0,.08)}
+.unassign-btn:hover::after{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#26292e;color:#fff;font-size:11px;font-weight:500;padding:5px 9px;border-radius:6px;white-space:nowrap;pointer-events:none;z-index:5}
 
 /* Toggle switch */
 .switch{position:relative;width:34px;height:19px;flex-shrink:0;cursor:pointer}
@@ -444,7 +451,7 @@ input,textarea{font-family:inherit}
             <label class="radio-row"><input type="radio" name="method" value="other" checked> Other</label>
           </div>
           <div class="method-desc show" id="methodDesc">
-            <textarea id="methodText" maxlength="250" placeholder="Enter description (Max 250 character limit)"></textarea>
+            <textarea id="methodText" maxlength="250" placeholder="Please specify (Max 250 character limit)"></textarea>
             <div class="char-count"><span id="charCount">0</span>/250</div>
           </div>
         </div>
@@ -452,7 +459,7 @@ input,textarea{font-family:inherit}
         <div id="catCards"></div>
 
         <div class="bottom-pagination">
-          <span id="bottomLabel">Waste Allocation: 1 to 4 of 4</span>
+          <span id="bottomLabel">Waste Allocation: 1 to 5 of 5</span>
           <div class="pager">
             <button disabled title="Previous page">
               <span class="msi" style="font-size:14px;">chevron_left</span>
@@ -535,10 +542,12 @@ const CATEGORIES = [
    desc:'Refers to wastes generated from production that are NOT categorized as Special Controlled Waste according to local waste regulations. For example, plastic trays for transferring components, wood pallets for transporting products, etc.'},
   {key:'scw', name:'Special Controlled Waste/Hazardous Waste', div:75000, non:25000,
    desc:'These wastes have regulations stipulating waste management requirements for collection, storage, and transportation. While these materials generally have hazardous characteristics, they are not required to be landfilled or incinerated and therefore may be recycled or reused as long as regulations for handling, storage, and transport are followed. For example, sludge containing heavy metals, spent activated carbon filters containing hazardous substances, etc.'},
+  {key:'scwm', name:'Special Controlled Waste/Hazardous Waste (Mandated)', div:75000, non:25000,
+   desc:'These wastes have regulations stipulating waste management requirements for collection, storage, and transportation. While these materials generally have hazardous characteristics, they are not required to be landfilled or incinerated and therefore may be recycled or reused as long as regulations for handling, storage, and transport are followed. For example, sludge containing heavy metals, spent activated carbon filters containing hazardous substances, etc.'},
   {key:'npw', name:'Non-Production Waste', div:85000, non:15000,
    desc:'Refers to wastes generated mostly from offices and cafeterias.'},
   {key:'ow', name:'Other Waste', div:70000, non:30000,
-   desc:'Refers to wastes that do not meet the definition of one of the first three categories.'},
+   desc:'Refers to wastes that do not meet the definition of one of the first three categories that are out-of-scope for the RBA Zero Waste Program. This is offered as an optional category for facilities that wish to track wastes outside of the offered categories. Examples include: landscaping waste, medical waste, construction and demolition waste, capital/durable manufacturing equipment waste. Note that waste recorded here is not included in the diversion calculation.'},
 ];
 
 const BASE_CUSTOMERS = [
@@ -699,6 +708,9 @@ function renderCards(){
       return `<tr>
         <td><div class="cust-name">${c.name}</div><div class="cust-id">${c.id}</div></td>
         <td><div class="cell-ctl">
+          <button class="unassign-btn" data-tooltip="Unassign Customer" title="Unassign Customer" onclick="unassignCustomer('${cat.key}',${c.idx})">
+            <span class="msi" style="font-size:16px;">person_remove</span>
+          </button>
           <span class="switch"><input type="checkbox" ${a.divOn?'checked':''} onchange="toggleAlloc('${cat.key}',${c.idx},'div',this.checked)"><span class="track"></span><span class="knob"></span></span>
           ${unitInput(cat.key,c.idx,'div','pct',a.divPct,a.divOn,t.divTotal)}
         </div></td>
@@ -816,6 +828,15 @@ function editAlloc(catKey, idx, side, kind, raw){
   const a = state[facIdx].alloc[catKey][idx];
   if(side==='div') a.divPct = pct; else a.nonPct = pct;
   renderCards();
+}
+
+function unassignCustomer(catKey, idx){
+  const s = state[facIdx];
+  const a = s.alloc[catKey][idx];
+  a.divOn = false; a.divPct = 0;
+  a.nonOn = false; a.nonPct = 0;
+  renderCards();
+  toast(`${s.customers[idx][0]} unassigned from ${CATEGORIES.find(c=>c.key===catKey).name}`);
 }
 
 function toggleCollapse(catKey){

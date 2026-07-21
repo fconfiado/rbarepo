@@ -381,6 +381,7 @@
         <p class="fig-body-md">body-md — 16px. The spectacle before us was indeed sublime.</p>
         <p class="fig-body-sm">body-sm — 14px. The spectacle before us was indeed sublime.</p>
         <p class="fig-body-xs subtle">body-xs — 12px, subtle text color. The spectacle before us was indeed sublime.</p>
+        <p style="font-size:16px;line-height:24px;margin:0.75rem 0">label-md — 16px / 24px. Larger form and control labels (new Jul 21 update).</p>
         <p style="font-size:14px;line-height:20px;margin:0.75rem 0">label-sm — 14px / 20px. Form and control labels.</p>
         <p style="font-size:12px;line-height:16px;margin:0.75rem 0">label-xs — 12px / 16px. Compact labels and helper captions.</p>
         <p style="font-size:16px;line-height:24px;margin:0.75rem 0">input-md — 16px / 24px. Input field text, medium.</p>
@@ -424,7 +425,7 @@
 
     <section class="block" id="alerts">
       <h2>Alerts</h2>
-      <p class="desc">Info, Success, Warning, and Error notification types (Figma node 2226-25296). Shown here at size L; <em>the Jul 15 DS update also publishes an Alert S component set.</em></p>
+      <p class="desc">Info, Success, Warning, and Error notification types (Figma node 2226-25296). Shown here at size L; <em>an Alert S component set also exists in the library (republished Jul 21) but its exact layout hasn't been pulled into this page yet.</em></p>
       <div class="card">
         <div class="alert type-info">
           <span class="msi icon" style="font-size:2px;">info</span>
@@ -448,7 +449,7 @@
     <section class="block" id="buttons">
       <h2>Buttons</h2>
       <p class="desc">Primary, Secondary, and Tertiary buttons in S / M / L sizes. Hover and click a button to see its Hover and Pressed states; the last button in each row shows the Disabled state.<br>
-      <em>New in DS v2 (Jul 15 update): Button Gray, Button Gray Subtle, Button Group, and Page Button component sets — not yet showcased here pending exact specs from the design system file.</em></p>
+      <em>The DS v2 library republished all Button component sets on Jul 21 (Primary/Secondary/Tertiary/Gray/Gray Subtle/Group, all sizes) — fill colors re-verified unchanged (primary #4967a9, hover #425e9a, active #344978). Button Gray, Button Gray Subtle, Button Group, and Page Button are still not showcased here pending exact layout specs.</em></p>
       <div class="card">
         <div class="fig-btn-group">
           <p class="fig-group-label">Primary</p>
@@ -527,7 +528,7 @@
 
     <section class="block" id="switches">
       <h2>Switches</h2>
-      <p class="desc">Toggle switches as used in the Trading Relationship allocation tables (REI Platform 2026). On state uses <code>#2f5fd0</code>; off state <code>#c3c9cf</code>.</p>
+      <p class="desc">Toggle switches as used in the Trading Relationship allocation tables (REI Platform 2026). On state uses <code>#2f5fd0</code>; off state <code>#c3c9cf</code>. <em>The DS library now publishes a dedicated Switch component family (Switch, Switch Item, Switch Input, Switch Group) as of Jul 21 — no color values differed from what's implemented here in our spot-check.</em></p>
       <div class="card">
         <div class="switch-row">
           <span class="rba-switch"><input type="checkbox"><span class="track"></span><span class="knob"></span></span>
@@ -572,7 +573,7 @@
 
     <section class="block" id="tables">
       <h2>Tables</h2>
-      <p class="desc">Header and data cell styling from the Table Invoice template (Figma node 3871-34352), with zebra rows.</p>
+      <p class="desc">Header and data cell styling from the Table Invoice template (Figma node 3871-34352), with zebra rows. <em>The Jul 21 DS update introduced a much larger column-based table architecture (Default Table, Table Invoice, and per-column components: Text, Number, Badge, Button, Toggle, Checkbox, Team, Status, Dropdown, Input Field, More, Slot) plus new Tooltip S/L and Dialog L components — out of scope to fully rebuild here, but the new <code>bg/table/table-hover</code> and <code>bg/table/table-column</code> tokens above already match this page's existing hover/zebra styling.</em></p>
       <div class="card">
         <table class="data-table">
           <caption>A list of your recent invoices.</caption>
@@ -641,8 +642,9 @@
     ['icon/link', '#00234c', 'Link icon'],
     ['icon/link-secondary', '#4967a9', 'Secondary link icon'],
     ['icon/link-secondary-active', '#344978', 'Secondary link icon, pressed'],
-    ['icon/success', '#008f5d', 'Success icon'],
+    ['icon/green', '#008f5d', 'Success icon (renamed from icon/success, Jul 21 update)'],
     ['icon/inverse', '#ffffff', 'Icon on dark/brand fills'],
+    ['Icon/Brand', '#0059c2', 'Distinct capitalized variable — changed from #335270 in the Jul 21 update; not yet wired to any component on this page'],
     ['border/link-active', '#344978', 'Active link border'],
     ['bg/brand/brand', '#00234c', 'Brand fill (checkbox selected)'],
     ['bg/brand/brand-subtle', '#e6eaef', 'Brand subtle fill'],
@@ -662,6 +664,8 @@
     ['light/orange/200', '#ffdfad', 'Orange primitive 200 (charts, progress)'],
     ['light/gray/100', '#f8f9fa', 'Gray primitive 100'],
     ['bg/table/table-column-alternate', '#f2f6fa', 'Table header / zebra row'],
+    ['bg/table/table-column', '#ffffff', 'Table column base fill (new Jul 21)'],
+    ['bg/table/table-hover', '#d3e9fd', 'Table row hover fill (new Jul 21, matches existing --table-hover)'],
     ['bg/neutral/neutral-disabled', 'rgba(0,0,0,0.12)', 'Disabled fill'],
     ['border/subtle', '#e9ecef', 'Subtle divider / border'],
     ['border/default', '#ced4da', 'Default / disabled border'],
@@ -707,6 +711,7 @@
     ['body-size-md', '16px, line-height 1.4'],
     ['body-size-sm', '14px, line-height 1.4'],
     ['body-size-xs', '12px, line-height 1.4'],
+    ['label-md', '16px, line-height 24px'],
     ['label-sm', '14px, line-height 20px'],
     ['label-xs', '12px, line-height 16px'],
     ['input-md', '16px, line-height 24px'],
